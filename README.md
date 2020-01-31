@@ -1,25 +1,12 @@
 Pagila
 ======
 
-Pagila is a port of the Sakila example database available for MySQL, which was  
-originally developed by Mike Hillyer of the MySQL AB documentation team. It  
-is intended to provide a standard schema that can be used for examples in 
-books, tutorials, articles, samples, etc.
+Our version of Pagila is based on [this repository](https://github.com/ganeshan/pagila) but with few modifications
 
-All the tables, data, views, and functions have been ported; some of the
-changes made were:
-
-* Changed char(1) true/false fields to true boolean fields
-* The last_update columns were set with triggers to update them
-* Added foreign keys
-* Removed 'DEFAULT 0' on foreign keys since it's pointless with real FK's
-* Used PostgreSQL built-in fulltext searching for fulltext index.
-  Removed the need for the film_text table.
-* The rewards_report function was ported to a simple SRF
-
-The schema and data for the Sakila database were made available under the BSD
-license which can be found at http://www.opensource.org/licenses/bsd-license.php.
-The pagila database is made available under this license as well.  
+- We tried it on Postgres 12 and are modifing it to be runnable in this version
+- Primary keys and foreign keys are now aligned to proper data types. Some primary keys were defined as integers but fkeyed as smallint and vice versa
+- Partition tables are now created for year 2020
+- Data are also created for year 2020
 
 
 FULLTEXT SEARCH
@@ -53,24 +40,3 @@ The pagila-data.sql file and the pagila-insert-data.sql both contain the same
 data, the former using COPY commands, the latter using INSERT commands, so you 
 only need to install one of them. Both formats are provided for those who have
 trouble using one version or another.
-
-VERSION HISTORY
----------------
-
-Version 2.0
-* Update schema for newer PostgreSQL versions
-* Remove RULE for partitioning, add trigger support.
-* Update years in sample data. 
-* Remove ARTICLES section from README, all links are dead.
-
-Version 0.10.1
-* Add pagila-data-insert.sql file, added articles section
-
-Version 0.10
-* Support for built-in fulltext. Add enum example 
-
-Version 0.9
-* Add table partitioning example 
-
-Version 0.8 
-* First release of pagila
