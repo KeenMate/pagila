@@ -20,7 +20,7 @@ SET search_path = public, pg_catalog;
 -- Data for Name: actor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY actor (actor_id, first_name, last_name, last_update) FROM stdin;
+COPY actor (actor_id, first_name, last_name, modified) FROM stdin;
 1	PENELOPE	GUINESS	2020-02-15 09:34:33
 2	NICK	WAHLBERG	2020-02-15 09:34:33
 3	ED	CHASE	2020-02-15 09:34:33
@@ -228,7 +228,7 @@ COPY actor (actor_id, first_name, last_name, last_update) FROM stdin;
 -- Data for Name: country; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY country (country_id, country, last_update) FROM stdin;
+COPY country (country_id, country, modified) FROM stdin;
 1	Afghanistan	2020-02-15 09:44:00
 2	Algeria	2020-02-15 09:44:00
 3	American Samoa	2020-02-15 09:44:00
@@ -345,7 +345,7 @@ COPY country (country_id, country, last_update) FROM stdin;
 -- Data for Name: city; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY city (city_id, city, country_id, last_update) FROM stdin;
+COPY city (city_id, city, country_id, modified) FROM stdin;
 1	A Corua (La Corua)	87	2020-02-15 09:45:25
 2	Abha	82	2020-02-15 09:45:25
 3	Abu Dhabi	101	2020-02-15 09:45:25
@@ -953,7 +953,7 @@ COPY city (city_id, city, country_id, last_update) FROM stdin;
 -- Data for Name: address; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY address (address_id, address, address2, district, city_id, postal_code, phone, last_update) FROM stdin;
+COPY address (address_id, address, address2, district, city_id, postal_code, phone, modified) FROM stdin;
 1	47 MySakila Drive	\N	Alberta	300			2020-02-15 09:45:30
 2	28 MySQL Boulevard	\N	QLD	576			2020-02-15 09:45:30
 3	23 Workhaven Lane	\N	Alberta	300		14033335568	2020-02-15 09:45:30
@@ -1564,7 +1564,7 @@ COPY address (address_id, address, address2, district, city_id, postal_code, pho
 -- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY category (category_id, name, last_update) FROM stdin;
+COPY category (category_id, name, modified) FROM stdin;
 1	Action	2020-02-15 09:46:27
 2	Animation	2020-02-15 09:46:27
 3	Children	2020-02-15 09:46:27
@@ -1588,9 +1588,9 @@ COPY category (category_id, name, last_update) FROM stdin;
 -- Data for Name: store; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY store (store_id, manager_staff_id, address_id, last_update) FROM stdin;
-1	1	1	2020-02-15 09:57:12
-2	2	2	2020-02-15 09:57:12
+COPY store (store_id, manager_staff_id, store_name, address_id, modified) FROM stdin;
+1	1	Derry, Maine	1	2020-02-15 09:57:12
+2	2	Chester's Mill, Maine	2	2020-02-15 09:57:12
 \.
 
 
@@ -1598,7 +1598,7 @@ COPY store (store_id, manager_staff_id, address_id, last_update) FROM stdin;
 -- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY customer (customer_id, store_id, first_name, last_name, email, address_id, activebool, create_date, last_update, active) FROM stdin;
+COPY customer (customer_id, store_id, first_name, last_name, email, address_id, activebool, create_date, modified, active) FROM stdin;
 1	1	MARY	SMITH	MARY.SMITH@sakilacustomer.org	5	t	2020-02-14	2020-02-15 09:57:20	1
 2	1	PATRICIA	JOHNSON	PATRICIA.JOHNSON@sakilacustomer.org	6	t	2020-02-14	2020-02-15 09:57:20	1
 3	1	LINDA	WILLIAMS	LINDA.WILLIAMS@sakilacustomer.org	7	t	2020-02-14	2020-02-15 09:57:20	1
@@ -2205,7 +2205,7 @@ COPY customer (customer_id, store_id, first_name, last_name, email, address_id, 
 -- Data for Name: language; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY language (language_id, name, last_update) FROM stdin;
+COPY language (language_id, name, modified) FROM stdin;
 1	English             	2020-02-15 10:02:19
 2	Italian             	2020-02-15 10:02:19
 3	Japanese            	2020-02-15 10:02:19
@@ -2219,7 +2219,7 @@ COPY language (language_id, name, last_update) FROM stdin;
 -- Data for Name: film; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY film (film_id, title, description, release_year, language_id, original_language_id, rental_duration, rental_rate, length, replacement_cost, rating, last_update, special_features, fulltext) FROM stdin;
+COPY film (film_id, title, description, release_year, language_id, original_language_id, rental_duration, rental_rate, length, replacement_cost, rating, modified, special_features, fulltext) FROM stdin;
 1	ACADEMY DINOSAUR	A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies	2006	1	\N	6	0.99	86	20.99	PG	2020-09-10 17:46:03.905795	{"Deleted Scenes","Behind the Scenes"}	'academi':1 'battl':15 'canadian':20 'dinosaur':2 'drama':5 'epic':4 'feminist':8 'mad':11 'must':14 'rocki':21 'scientist':12 'teacher':17
 2	ACE GOLDFINGER	A Astounding Epistle of a Database Administrator And a Explorer who must Find a Car in Ancient China	2006	1	\N	3	4.99	48	12.99	G	2020-09-10 17:46:03.905795	{Trailers,"Deleted Scenes"}	'ace':1 'administr':9 'ancient':19 'astound':4 'car':17 'china':20 'databas':8 'epistl':5 'explor':12 'find':15 'goldfing':2 'must':14
 3	ADAPTATION HOLES	A Astounding Reflection of a Lumberjack And a Car who must Sink a Lumberjack in A Baloon Factory	2006	1	\N	7	2.99	50	18.99	NC-17	2020-09-10 17:46:03.905795	{Trailers,"Deleted Scenes"}	'adapt':1 'astound':4 'baloon':19 'car':11 'factori':20 'hole':2 'lumberjack':8,16 'must':13 'reflect':5 'sink':14
@@ -3227,7 +3227,7 @@ COPY film (film_id, title, description, release_year, language_id, original_lang
 -- Data for Name: film_actor; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY film_actor (actor_id, film_id, last_update) FROM stdin;
+COPY film_actor (actor_id, film_id, modified) FROM stdin;
 1	1	2020-02-15 10:05:03
 1	23	2020-02-15 10:05:03
 1	25	2020-02-15 10:05:03
@@ -8697,7 +8697,7 @@ COPY film_actor (actor_id, film_id, last_update) FROM stdin;
 -- Data for Name: film_category; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY film_category (film_id, category_id, last_update) FROM stdin;
+COPY film_category (film_id, category_id, modified) FROM stdin;
 1	6	2020-02-15 10:07:09
 2	11	2020-02-15 10:07:09
 3	6	2020-02-15 10:07:09
@@ -9705,7 +9705,7 @@ COPY film_category (film_id, category_id, last_update) FROM stdin;
 -- Data for Name: inventory; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY inventory (inventory_id, film_id, store_id, last_update) FROM stdin;
+COPY inventory (inventory_id, film_id, store_id, modified) FROM stdin;
 1	1	1	2020-02-15 10:09:17
 2	1	1	2020-02-15 10:09:17
 3	1	1	2020-02-15 10:09:17
@@ -14294,7 +14294,7 @@ COPY inventory (inventory_id, film_id, store_id, last_update) FROM stdin;
 -- Data for Name: staff; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY staff (staff_id, first_name, last_name, address_id, email, store_id, active, username, password, last_update, picture) FROM stdin;
+COPY staff (staff_id, first_name, last_name, address_id, email, store_id, active, username, password, modified, picture) FROM stdin;
 1	Mike	Hillyer	3	Mike.Hillyer@sakilastaff.com	1	t	Mike	8cb2237d0679ca88db6464eac60da96345513964	2020-05-16 16:13:11.79328	\\x89504e470d0a5a0a
 2	Jon	Stephens	4	Jon.Stephens@sakilastaff.com	2	t	Jon	8cb2237d0679ca88db6464eac60da96345513964	2020-05-16 16:13:11.79328	\N
 \.
@@ -14304,7 +14304,7 @@ COPY staff (staff_id, first_name, last_name, address_id, email, store_id, active
 -- Data for Name: rental; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY rental (rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, last_update) FROM stdin;
+COPY rental (rental_id, rental_date, inventory_id, customer_id, return_date, staff_id, modified) FROM stdin;
 2	2005-05-24 22:54:33	1525	459	2005-05-28 19:40:33	1	2020-02-16 02:30:53
 3	2005-05-24 23:03:39	1711	408	2005-06-01 22:12:39	1	2020-02-16 02:30:53
 4	2005-05-24 23:04:41	2452	333	2005-06-03 01:43:41	2	2020-02-16 02:30:53
